@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: counter
+  labels:
+    type: local
+    name: counter
+spec:
+  volumeMode: Filesystem
+  storageClassName: my-local-storage
+  persistentVolumeReclaimPolicy: Retain
+  capacity:
+    storage: 50Mi
+  accessModes:
+    - ReadWriteMany
+  hostPath:
+    path: "/data/counter"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: counter
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 50Mi
+  storageClassName: my-local-storage
+  volumeMode: Filesystem
+  volumeName: counter

@@ -1,0 +1,10 @@
+version: '3.7'
+services:
+  counter:
+    #platform: linux/amd64
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    image: registry.walii.es/counter
+    volumes:
+      - ./app/:/app
